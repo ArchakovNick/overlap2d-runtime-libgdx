@@ -141,7 +141,7 @@ public class ResourceManager implements IResourceLoader, IResourceRetriever {
     /**
      * Unschedule scene from later loading
      *
-     * @param name
+     * @param name scene name
      */
     public void unScheduleScene(String name) {
         preparedSceneNames.remove(name);

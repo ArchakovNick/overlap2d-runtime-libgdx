@@ -3,6 +3,7 @@ package com.uwsoft.editor.renderer.components.sprite;
 import com.badlogic.ashley.core.Component;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import com.uwsoft.editor.renderer.data.FrameRange;
 
@@ -13,7 +14,7 @@ import java.util.regex.Pattern;
 
 public class SpriteAnimationStateComponent implements Component {
     public Array<TextureAtlas.AtlasRegion> allRegions;
-	public Animation currentAnimation;
+	public Animation<TextureRegion> currentAnimation;
 	public float time = 0.0f;
 
     public  boolean paused = false;

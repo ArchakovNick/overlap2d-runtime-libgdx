@@ -69,23 +69,23 @@ public class ComponentRetriever {
      * it might be a good idea to use Reflections library later to create this list from all classes in components package of runtime, all in favour?
      */
     private void init() {
-    	mappers.put(LightObjectComponent.class, ComponentMapper.getFor(LightObjectComponent.class));
-    	
-    	mappers.put(ParticleComponent.class, ComponentMapper.getFor(ParticleComponent.class));
+        mappers.put(LightObjectComponent.class, ComponentMapper.getFor(LightObjectComponent.class));
+
+        mappers.put(ParticleComponent.class, ComponentMapper.getFor(ParticleComponent.class));
 
         mappers.put(LabelComponent.class, ComponentMapper.getFor(LabelComponent.class));
 
-    	mappers.put(PolygonComponent.class, ComponentMapper.getFor(PolygonComponent.class));
-    	mappers.put(PhysicsBodyComponent.class, ComponentMapper.getFor(PhysicsBodyComponent.class));
+        mappers.put(PolygonComponent.class, ComponentMapper.getFor(PolygonComponent.class));
+        mappers.put(PhysicsBodyComponent.class, ComponentMapper.getFor(PhysicsBodyComponent.class));
         mappers.put(PhysicsBodyComponent.class, ComponentMapper.getFor(PhysicsBodyComponent.class));
 
         mappers.put(AnimationComponent.class, ComponentMapper.getFor(AnimationComponent.class));
         mappers.put(SpriteAnimationComponent.class, ComponentMapper.getFor(SpriteAnimationComponent.class));
         mappers.put(SpriteAnimationStateComponent.class, ComponentMapper.getFor(SpriteAnimationStateComponent.class));
-        
+
         mappers.put(SpriterDrawerComponent.class, ComponentMapper.getFor(SpriterDrawerComponent.class));
         mappers.put(SpriterComponent.class, ComponentMapper.getFor(SpriterComponent.class));
-        
+
         mappers.put(CompositeTransformComponent.class, ComponentMapper.getFor(CompositeTransformComponent.class));
         mappers.put(DimensionsComponent.class, ComponentMapper.getFor(DimensionsComponent.class));
         mappers.put(LayerMapComponent.class, ComponentMapper.getFor(LayerMapComponent.class));
@@ -114,7 +114,7 @@ public class ComponentRetriever {
      * @return ComponentRetriever only instance
      */
     private static synchronized ComponentRetriever self() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new ComponentRetriever();
 
             // Important to initialize during first creation, to populate mappers map
@@ -133,23 +133,23 @@ public class ComponentRetriever {
 
     /**
      * Retrieves Component of provided type from a provided entity
-     * @param entity of type Entity to retrieve component from
-     * @param type of the component
-     * @param <T>
      *
+     * @param entity of type Entity to retrieve component from
+     * @param type   of the component
+     * @param <T> class of component
      * @return Component subclass instance
      */
     @SuppressWarnings("unchecked")
     public static <T extends Component> T get(Entity entity, Class<T> type) {
-        return (T)self().getMappers().get(type).get(entity);
+        return (T) self().getMappers().get(type).get(entity);
     }
 
 
     @SuppressWarnings("unchecked")
-    public static  Collection<Component> getComponents(Entity entity) {
+    public static Collection<Component> getComponents(Entity entity) {
         Collection<Component> components = new ArrayList<Component>();
         for (ComponentMapper<? extends Component> mapper : self().getMappers().values()) {
-            if(mapper.get(entity) != null) components.add(mapper.get(entity));
+            if (mapper.get(entity) != null) components.add(mapper.get(entity));
         }
 
         return components;
@@ -159,7 +159,7 @@ public class ComponentRetriever {
      * This is to add a new mapper type externally, in case of for example implementing the plugin system,
      * where components might be initialized on the fly
      *
-     * @param type
+     * @param type of Mapper
      */
     @SuppressWarnings("unchecked")
     public static void addMapper(Class type) {
